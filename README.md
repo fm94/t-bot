@@ -11,6 +11,7 @@ See: https://keras.io/examples/rl/deep_q_network_breakout/
 
 # Bets model so far
 - `t-bot_112.h5`: trained on 14 days of ADA data using only the bet_USD column. It achieves 12% gain with 50% sampled selling and 9% without sampling.
+- `t-bot_163.h5`: same performance but perfrms better on a daily basis.
 
 # Data
 The provided data is sampled with a 1 minute resolution.

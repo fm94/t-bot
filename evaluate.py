@@ -6,6 +6,13 @@ from tqdm import tqdm
 import pandas as pd
 import random
 
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+def get_state(t, last_action):
+    data_chunk = data[t:t+window_size+1]
+    return np.concatenate([sigmoid(np.diff(data_chunk)/data_chunk[1:] * 1000), last_action])
+
 data = []
 for i in range(1,15):
     data.append(np.load('data/data{}.npy'.format(i)))
@@ -58,7 +65,7 @@ for timestep in tqdm(range(1, data_samples-window_size-2)):
     balances.append(balance)
     actions.append(action)
 
-print('>> Final balance: 'balance)
+print('>> Final balance: ', balance)
 
 buys = np.where(np.array(actions) == 0)
 sells = np.where(np.array(actions) == 1)
